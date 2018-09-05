@@ -1,0 +1,25 @@
+.radius_test {
+    width: 32.3333%;            /* 幅指定 */
+    height: 200px;              /* 高さ指定 */
+    border-radius: 10px;        /* 角丸指定 */
+    display:  inline-block;     /* インラインブロックする */
+    box-sizing:  border-box;    /* 崩れ防止 */
+    margin-bottom: 5px;         /* 要素の空き具合指定 */
+    padding:  20px;             /* 余白指定 */
+    font-family: "ヒラギノ丸ゴ Pro W4","Hiragino Maru Gothic Pro";    /* フォントの種類を指定 */
+    text-align:  center;        /* 中央揃え */
+    color:  #fff;               /* 文字色指定 */
+    font-size: 18px;            /* 文字サイズ指定 */
+}
+.radius_test:nth-child(1) {
+    background-color:#de9610;   /* 背景色指定 */
+}
+.radius_test:nth-child(2) {
+    background-color:#c93a40;   /* 背景色指定 */
+}
+.radius_test:nth-child(3) {
+    background-color:#d06d8c;   /* 背景色指定 */
+}
+.radius_test:nth-child(4) {
+    background-color:#65ace4;   /* 背景色指定 */
+}
