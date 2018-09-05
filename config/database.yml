@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: gurusoku_production
-  username: gurusoku
-  password: <%= ENV['GURUSOKU_DATABASE_PASSWORD'] %>
+  username: b567c51e24ed07
+  password: e7f6aae4
