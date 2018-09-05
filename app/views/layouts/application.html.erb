@@ -7,14 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header class="header">
-    <div class="header__bar row" style="text-align: center;">
-      <h1 class="grid-6">ぐるそく！</h1>
-      <p>
-        - 徒歩3分、空いてる居酒屋、すぐ予約！-
-      </p>
-    </div>
-  </header>
+  <%= render partial: 'common/header' %>
   <%= yield %>
   <footer style="text-align: center;">
     <a href="tenpotop.html">店舗様向けご案内ページ</a>
@@ -24,5 +17,4 @@
   </footer>
 </body>
 </html>
-
 
