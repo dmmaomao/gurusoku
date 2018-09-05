@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>Gurusoku</title>
+  <title>ぐるそく - 徒歩3分以内の飲食店を即検索&予約！</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <header class="header">
+    <div class="header__bar row">
+      <h1 class="grid-6"><a href="kensaku_people.html">ぐるそく</a></h1>
+    </div>
+  </header>
+  <%= yield %>
+  <footer>
+    <p style="text-align: center;">
+      Copyright ぐるそく 2018.
+    </p>
+  </footer>
 </body>
 </html>
+
+
