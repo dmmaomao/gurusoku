@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: gurusoku_production
+  database: heroku_ece5086765fa625
   username: b567c51e24ed07
   password: e7f6aae4
