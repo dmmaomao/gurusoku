@@ -1,3 +1,29 @@
+
+
+
+.header {
+color: #fff;
+  background: #00BCD4;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+
+.footer a{
+text-align: center;
+text-decoration:  none;
+}
+
+
+
+
+
+
+
+
 .button{
 list-style: none;
 display: flex;
@@ -30,6 +56,7 @@ text-align: center;
 
 .to_tenpo_page {
 list-style: none;
+
     text-decoration:  none;             /* デフォルトCSS打ち消し */
     color: #fff;                        /* 文字色指定 */
     background-color: #00BCD4;          /* 背景色指定 */

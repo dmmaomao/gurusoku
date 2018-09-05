@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>ぐるそく - 徒歩3分以内の飲食店を即検索&予約！</title>
+  <title>ぐるそく - 徒歩3分以内の飲食店を即検索&予約！ -</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <header class="header">
-    <div class="header__bar row">
-      <h1 class="grid-6" style="text-align: center;">ぐるそく！</h1>
+    <div class="header__bar row" style="text-align: center;">
+      <h1 class="grid-6">ぐるそく！</h1>
+      <p>
+        - 徒歩3分、空いてる居酒屋、すぐ予約！-
+      </p>
     </div>
   </header>
   <%= yield %>
-  <footer>
-    <p style="text-align: center;">
+  <footer style="text-align: center;">
+    <a href="tenpotop.html">店舗様向けご案内ページ</a>
+    <p>
       Copyright ぐるそく！ 2018.
     </p>
   </footer>
