@@ -49,6 +49,8 @@ test:
 #
 production:
   <<: *default
-  database: heroku_ece5086765fa625
+  adapter:mysql2
+  database: mydb
+  host: ip-10-97-194-102.ec2.internal
   username: b567c51e24ed07
   password: e7f6aae4
