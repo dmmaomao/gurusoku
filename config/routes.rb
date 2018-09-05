@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "top#index"
+  root to: "reserve#index"
   get 'reserve' => 'reserve#index'
   get 'reserve/search' => 'reserve#search'
   # The priority is based upon order of creation: first created -> highest priority.
