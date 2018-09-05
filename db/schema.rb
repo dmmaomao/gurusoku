@@ -11,11 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905060813) do
+ActiveRecord::Schema.define(version: 20180905071103) do
 
   create_table "images", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.text     "image_url",  limit: 65535
+    t.integer  "izakaya_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "izakayas", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "genre",      limit: 255
+    t.integer  "izakaya_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "seats", force: :cascade do |t|
+    t.integer  "total_now",         limit: 4
+    t.integer  "total_15min",       limit: 4
+    t.integer  "four_seats_now",    limit: 4
+    t.integer  "four_seats_15min",  limit: 4
+    t.integer  "six_seats_now",     limit: 4
+    t.integer  "six_seats_15min",   limit: 4
+    t.integer  "eight_seats_now",   limit: 4
+    t.integer  "eight_seats_15min", limit: 4
+    t.integer  "teb_seats_now",     limit: 4
+    t.integer  "ten_seats_15min",   limit: 4
+    t.integer  "izakaya_id",        limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
