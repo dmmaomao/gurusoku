@@ -1,7 +1,9 @@
-class CreateImages < ActiveRecord::Migration
+class CreateIzakayas < ActiveRecord::Migration
   def change
-    create_table :images do |t|
-
+    create_table :izakayas do |t|
+      t.string :name
+      t.string :genre
+      t.integer :izakaya_id
       t.timestamps null: false
     end
   end
