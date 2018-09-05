@@ -51,5 +51,6 @@ gem 'sprockets', '2.11.0'
   gem 'paperclip'
 group :production do
   gem 'rails_12factor'
+  gem 'pg', '~> 0.18'
 end
 
