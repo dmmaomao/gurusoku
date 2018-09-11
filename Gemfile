@@ -55,3 +55,6 @@ group :production do
   gem 'pg', '~> 0.18'
 end
 
+gem 'geocoder'
+gem "gmaps4rails"
+gem 'geokit-rails'
