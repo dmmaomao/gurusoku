@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "reserve#index"
   get 'reserve' => 'reserve#index'
   get 'reserve/search' => 'reserve#search'
+  post 'reserve' => 'reserve#create'
+  get 'reserve/map' => 'reserve#map'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

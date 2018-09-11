@@ -4,7 +4,11 @@
  </br>
     <ul style="text-align: center;" class="button">
       <li>
-        <a href="kensaku_map.html" class="radius_test">4</a>
+        <a href="kensaku_map.html" class="radius_test">
+          <%= form_tag('/reserve', method: :post) do %>
+          <input id=”submit_button” type="submit" value="3~4人">
+          <% end %>
+        </a>
       </li>
       <li>
         <a href="kensaku_map.html" class="radius_test">5 ~ 6</a>
@@ -20,3 +24,11 @@
 
 <br/><br/><br/>
 
+
+<div class="contents row">
+  <%= form_tag('/reserve', method: :post) do %>
+    <input type="submit" value="3~4人">
+  <% end %>
+</div>
+
+<%= link_to “3~4人”, :controller => "reserve", :action => "map"%>

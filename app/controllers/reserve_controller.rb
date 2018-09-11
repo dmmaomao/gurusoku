@@ -2,7 +2,10 @@ class ReserveController < ApplicationController
   def index
   end
 
-  def search
+  def reserve
 
+  end
+
+  def map
   end
 end
