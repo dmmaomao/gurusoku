@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @current_user.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @current_user.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @current_user.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @current_user.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @current_user.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_current_user_path(@current_user) %> |
+<%= link_to 'Back', current_users_path %>
