@@ -1,24 +1,28 @@
-
 </br></br></br></br></br>
  <h2 style="text-align: center;">何名様ですか？</h2>
- </br>
-    <ul style="text-align: center;" class="button">
-      <li>
-        <a href="kensaku_map.html" class="radius_test">4</a>
-      </li>
-      <li>
-        <a href="kensaku_map.html" class="radius_test">5 ~ 6</a>
-      </li>
-      <li>
-        <a href="kensaku_map.html" class="radius_test">7 ~ 8</a>
-      </li>
-      <li>
-        <a href="kensaku_map.html" class="radius_test">9 ~ 10</a>
-      </li>
-    </ul>
 
-<br/><br/>
-.currentLocation
-  = button_tag ‘現在地から探す’, type: ‘button’
+<%= form_tag "/reserve/map", :method => 'get' do %>
 
+<div type=checkbox class="button" id="4">
+<%= check_box_tag :number, params[:number] %>
+<%= label_tag :number, "~4人" %>
+</div>
 
+<div type=checkbox class="button" id="6">
+<%= check_box_tag :number %>
+<%= label_tag :number, "5~6人" %>
+</div>
+
+<div type=checkbox class="button" id="8">
+<%= check_box_tag :number %>
+<%= label_tag :number, "7~8人" %>
+</div>
+
+<div type=checkbox class="button" id="10">
+<%= check_box_tag :number %>
+<%= label_tag :number, "9~10人" %>
+</div>
+
+<%= submit_tag "この人数で検索する", :name => nil %>
+<% end %>
+<br/><br/><br/>
