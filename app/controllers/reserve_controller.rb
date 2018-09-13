@@ -30,7 +30,7 @@ class ReserveController < ApplicationController
     ## @restaurants[:rest] 多分[{id:~,text:~},{id: ~,text: ~ }]
     ##rst_idsはAPiでとってきた店のid全部
     ##rst_ids = [3700,3701,3702]
-    rst_ids = @restaurants[:rest].[:id]
+    rst_ids = @restaurants.rest.id
 
     #検索条件のカラムが動的に変わる
     rsts = Seat.Where(izakaya_id: rst_ids).where("#{number} >= 1") ###{number}が動くかわからないので注意
