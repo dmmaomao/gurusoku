@@ -17,10 +17,6 @@ class ReserveController < ApplicationController
     @places = Izakaya.all.within(0.3, origin: [latitude, longitude])
   end
 
-  def izakaya
-  end
-
-
 
   def number
     @number = Number.new
