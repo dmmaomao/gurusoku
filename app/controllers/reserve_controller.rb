@@ -43,7 +43,7 @@ class ReserveController < ApplicationController
 
   private
   def get_izakaya(location)
-    url = URI.parse(URI.escape("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=#{location[:ido]}&longitude=#{location[:keido]}&range=1&web_reserve=1&bottomless_cup=1"))
+    url = URI.parse(URI.escape("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=#{location[:latitude]}&longitude=#{location[:longitude]}&range=1&web_reserve=1&bottomless_cup=1"))
     res = Net::HTTP.start(url.host, url.port, use_ssl: true){|http|
       http.get(url.path + "?" + url.query);
     }

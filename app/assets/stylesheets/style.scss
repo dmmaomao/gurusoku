@@ -19,6 +19,54 @@ text-decoration:  none;
 
 
 
+/* checkbox */
+input[type=checkbox] {
+text-align: center;
+
+  display: none;
+}
+input[type="checkbox"].checkbox:checked + label {
+text-align: center;
+
+  background: #31A9EE;
+  color: #ffffff;
+}
+.check_label:hover {
+text-align: center;
+  background-color: #E2EDF9;
+}
+.check_label{
+text-align: center;
+    text-decoration:  none;             /* デフォルトCSS打ち消し */
+    color: #fff;                        /* 文字色指定 */
+    background-color: #00BCD4;          /* 背景色指定 */
+    width: 300px;                       /* 幅指定 */
+    display: block;                     /* ブロック要素にする */
+    text-align:  center;                /* 中央揃え */
+    padding: 15px;                      /* 余白指定 */
+    border-radius:  5px;                /* 角丸指定 */
+    font-size: 24px;                    /* 文字サイズ指定 */
+    box-shadow: 0 2px 10px 0 #9E9E9E;   /* 影指定 */
+}
+
+
+
+.checl_label_02{
+  display: block;
+  text-decoration:  none;
+  float: left;
+  margin: 5px;
+  width: 100px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+  color: #31A9EE;
+  border: 2px solid #006DD9;
+  border-radius: 5px;
+}
 
 
 
@@ -51,6 +99,12 @@ text-align: center;
     border-radius:  5px;                /* 角丸指定 */
     font-size: 24px;                    /* 文字サイズ指定 */
     box-shadow: 0 2px 10px 0 #9E9E9E;   /* 影指定 */
+}
+
+.location{
+list-style: none;
+display: flex;
+align-items: center;
 }
 
 

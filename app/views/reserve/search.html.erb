@@ -1,25 +1,34 @@
 </br></br></br></br></br>
  <h2 style="text-align: center;">何名様ですか？</h2>
 
-
+<%= form_tag reserve_search_path, :method => 'get' do %>
+<div class="list">
 <ul>
   <li>
-    <label><input name="number[]" type="checkbox" value="four_seats" />~4人</label>
+    <input name="number[]" id="button_01" type="checkbox" value="four_seats" class="checkbox" />
+    <label for="button_01" class="check_label">~4人</label>
   </li>
   <li>
-    <label><input name="number[]" type="checkbox" value="six_seats" />5~6人</label>
+    <input name="number[]" id="button_02" type="checkbox" value="six_seats" class="checkbox" />
+    <label for="button_02" class="check_label">5~6人</label>
   </li>
   <li>
-    <label><input name="number[]" type="checkbox" value="eight_seats" />7~8人</label>
+    <input name="number[]" id="button_03" type="checkbox" value="eight_seats" class="checkbox" />
+  <label for="button_03" class="check_label">7~8人</label>
   </li>
   <li>
-    <label><input name="number[]" type="checkbox" value="ten_seats" />9~10人</label>
+    <input name="number[]" id="button_04" type="checkbox" value="ten_seats" class="checkbox" />
+  <label for="button_04" class="check_label">9~10人</label>
   </li>
 </ul>
-
-<div type="button" class="location">
-  現在地を取得する
 </div>
+
+
+<%= javascript_include_tag "get_location.js" %>
+
+<input type="button" name="location[]" id="button_05" type="checkbox" class="location" />
+<label for="button_05" class="check_label">現在地を取得する</label>
+
 
 <%= submit_tag "徒歩3分の居酒屋を検索する" %>
 <% end %>
@@ -27,18 +36,4 @@
 
 
 
-<script type="text/javascript">
-  $(".location").on("click", function(){
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-      // success callback
-      function(position) {
-        location = ( "latitude: " + position.coords.latitude + "\nlongitude: " + position.coords.longitude );
-      },
-      // error callback
-      function(position) {
-        alert( "位置情報が取得できません。" );
-      })
-    }
-  });
-</script>
+
