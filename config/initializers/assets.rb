@@ -11,3 +11,4 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( get_location.js )
 Rails.application.config.assets.precompile += %w( check_box_only_one.js )
+Rails.application.config.assets.precompile += %w( google_map.js )

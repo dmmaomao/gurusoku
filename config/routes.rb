@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :current_users
   devise_for :users
-  root to: "reserve#index"
+  root to: "reserve#search"
   get 'reserve' => 'reserve#index'
   get 'reserve/search' => 'reserve#search'
   post 'reserve' => 'reserve#create'

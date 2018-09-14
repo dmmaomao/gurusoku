@@ -25,7 +25,9 @@ class ReserveController < ApplicationController
 
   def map
     @number = params[:number]
-    location = params[:location]
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    @location = [latitude, longitude]
     @restaurants = get_izakaya(location)
     ## @restaurants[:rest] 多分[{id:~,text:~},{id: ~,text: ~ }]
     ##rst_idsはAPiでとってきた店のid全部

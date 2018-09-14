@@ -3,5 +3,11 @@
 <%= form_tag new_user_registration_path, :method => 'get' do %>
 <input hidden name="number" value="#{@number}">
 <% end %>
+<%= javascript_include_tag "google_map.js" %>
 
 
+<div id="map">
+
+
+
+</div>
