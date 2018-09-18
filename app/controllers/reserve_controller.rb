@@ -45,7 +45,7 @@ class ReserveController < ApplicationController
     ## @restaurants[:rest] 多分[{id:~,text:~},{id: ~,text: ~ }]
     ##rst_idsはAPiでとってきた店のid全部
     ##rst_ids = [3700,3701,3702]
-
+    get_izakaya
     #rst_ids = @rest[:rest][:id]
     #検索条件のカラムが動的に変わる
     #rsts = Seat.Where(izakaya_id: rst_ids).where("#{number} >= 1") ###{number}が動くかわからないので注意
@@ -56,7 +56,7 @@ class ReserveController < ApplicationController
   end
 
   private
-  def get_izakaya(location)
+  def get_izakaya()
     url = URI.parse(URI.escape("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=35.678647&longitude=139.767384&range=1&web_reserve=1&bottomless_cup=1"))
     res = Net::HTTP.start(url.host, url.port, use_ssl: true){|http|
       http.get(url.path + "?" + url.query);
@@ -65,7 +65,7 @@ class ReserveController < ApplicationController
     @rest = obj["rest"]
     @ids = []
     @rest.each do |rest|
-      @ids << @rest[:id]
+      @ids << rest["id"]
     end
   end
 

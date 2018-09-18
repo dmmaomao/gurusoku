@@ -4,7 +4,7 @@
 <%= javascript_include_tag "check_box_only_one.js" %>
 <%= javascript_include_tag "get_location.js" %>
 <%= form_tag reserve_map_path, :method => 'get' do %>
-<div class="list">
+<div class="list" style="text-align: center; margin: 30px;">
 <ul>
   <li>
     <input name="number[]" id="button_01" type="checkbox" value="four_seats" class="checkbox" />
@@ -26,17 +26,10 @@
 </div>
 <input type="button" name="location[]" id="button_05" class="location" value="現在地を取得する"/>
 <label for="button_05" class="check_label">現在地を取得する</label>
-
-<%= submit_tag "徒歩3分の居酒屋を検索する" %>
+<%= hidden_field(:query, :latitude, {value: nil}) %>
+<%= hidden_field(:query, :longitude, {value: nil}) %>
+<%= submit_tag "徒歩3分の居酒屋を検索する", { id: 'submit_btn', class: 'btn btn-primary' } %>
 <% end %>
-
-<div style="text-align: center; margin: 30px;">
-<%= form_tag(reserve_map_path, method: :post) do %>
-  <%= hidden_field(:query, :latitude, {value: nil}) %>
-  <%= hidden_field(:query, :longitude, {value: nil}) %>
-  <%= submit_tag '検索する', { id: 'submit_btn', class: 'btn btn-primary' } %>
-<% end %>
-</div>
 
 <script type="text/javascript">
   var ready

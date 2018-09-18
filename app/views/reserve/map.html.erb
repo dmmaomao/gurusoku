@@ -5,7 +5,6 @@
 <input hidden name="number" value="#{@number}">
 <input hidden name="location_lat" value="#{@latitude}">
 <input hidden name="location_lon" value="#{@longitude}">
-
 <% end %>
 
 
@@ -44,7 +43,7 @@ function initMap() {
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>現在地:</strong>
   東京都千代田区丸の内１丁目９−２
 </p>
 
@@ -67,10 +66,25 @@ function initMap() {
 </style>
 <div id="map"></div>
 
+
+<p>
+  <strong>店情報:</strong>
+  <div class="rest_list">
+    <% @rest.each do |rest| %>
+    <div class="card">
+      <%= rest["id"] %>
+      <div class="card-block">
+        <h2 class="card-title"><%= rest["name"] %><%= rest["category"] %></h2>
+        <%= image_tag(rest["image_url"]["shop_image1"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
+        <%= image_tag(rest["image_url"]["shop_image2"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
+        <p class="card-text"><%= rest["pr"]["pr_short"].presence %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</sp>
+
 <%= link_to 'Back', reserve_search_path %>
-
-<% @rest %>
-
 
 
 
