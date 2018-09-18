@@ -5,22 +5,77 @@
 <input hidden name="number" value="#{@number}">
 <input hidden name="location_lat" value="#{@latitude}">
 <input hidden name="location_lon" value="#{@longitude}">
-<input type="button" name="location[]" id="button_05" class="location" value="現在地を取得する"/>
-<label for="button_05" class="check_label">現在地を取得する</label>
+
 <% end %>
-<%= javascript_include_tag "google_map.js" %>
-<%= javascript_include_tag "get_location.js" %>
-
-<div id="map">
 
 
+<script type="text/javascript">
+function initMap() {
+  var location ={lat: 35.678647, lng: 139.767384};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: location
+  });
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
 
-</div>
+  var contentString = '住所：東京都千代田区丸の内１丁目９−２';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
 
-<%= link_to "Get Location",
-  {:controller=>"reserve",  :action => 'map'},
-  :remote=> true, id: "getLocation" %>
-<div id ='geoLocation'></div>
-("#geoLocation").html("<%= @lat %><br> <%= @lon %>");
+        var marker = new google.maps.Marker({
+            position:location,
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBiKAJR9OHYaiIgqc2Fb1MdU-yGaWKlsio&callback=initMap">
+</script>
+
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  東京都千代田区丸の内１丁目９−２
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  35.678647
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  139.767384
+</p>
+
+<style type="text/css">
+  #map { height: 400px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+    width: 80%;}
+</style>
+<div id="map"></div>
+
+<%= link_to 'Back', reserve_search_path %>
+
+<% @rest %>
+
+
+
+
+
+
+
 
 

@@ -1,9 +1,9 @@
 <script type="text/javascript">
-  $(".location").on("click", function(){
+  $(".location").on("click", function getposition(){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
       // success callback
-      function postion() {
+      function(postion) {
       var latitude  = position.coords.latitude;//緯度
       var longitude = position.coords.longitude;//経度
       var location = ( "latitude: " + latitude + "\nlongitude: " + longitude );
@@ -30,3 +30,4 @@
         alert( errorMessage ) ;
      };
 </script>
+
