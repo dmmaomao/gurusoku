@@ -1,0 +1,6 @@
+<div style="text-align: center; ">
+<h1><%= @rest[:name] %>(<p><%= @rest[:category] %></p>)</h1>
+<%= image_tag(@rest[:image_url][:shop_image1].presence || '/files/images/noimage.png') %>
+<%= image_tag(@rest[:image_url][:shop_image2].presence || '/files/images/noimage.png') %>
+<%= @rest[:pr][:pr_short].presence %>
+</div>
