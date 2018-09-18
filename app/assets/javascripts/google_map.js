@@ -9,7 +9,7 @@ function initMap() {
   // 現在地の取得
   navigator.geolocation.getCurrentPosition(function(position) {
   // 緯度経度の取得
-  location = new google.maps.location(position.coords.latitude, position.coords.longitude);
+  location = new google.maps.location(@latitude, @longitude);
   // 地図の作成
   map = new google.maps.Map(document.getElementById('map'), {
     center: location,
@@ -17,7 +17,7 @@ function initMap() {
   });
   // マーカーの追加
   marker = new google.maps.Marker({
-    position: location,
+    position: @location,
     map: map
   });
     },
@@ -26,5 +26,6 @@ function initMap() {
     });
 }
 </script>
+
 
 

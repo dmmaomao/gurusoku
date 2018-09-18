@@ -1,13 +1,26 @@
+
 <h2 style="text-align: center;">お店を選択してください</h2>
 
 <%= form_tag new_user_registration_path, :method => 'get' do %>
 <input hidden name="number" value="#{@number}">
+<input hidden name="location_lat" value="#{@latitude}">
+<input hidden name="location_lon" value="#{@longitude}">
+<input type="button" name="location[]" id="button_05" class="location" value="現在地を取得する"/>
+<label for="button_05" class="check_label">現在地を取得する</label>
 <% end %>
 <%= javascript_include_tag "google_map.js" %>
-
+<%= javascript_include_tag "get_location.js" %>
 
 <div id="map">
 
 
 
 </div>
+
+<%= link_to "Get Location",
+  {:controller=>"reserve",  :action => 'map'},
+  :remote=> true, id: "getLocation" %>
+<div id ='geoLocation'></div>
+("#geoLocation").html("<%= @lat %><br> <%= @lon %>");
+
+

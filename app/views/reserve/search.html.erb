@@ -1,7 +1,8 @@
-</br></br></br></br></br>
+
  <h2 style="text-align: center;">何名様ですか？</h2>
 
 <%= javascript_include_tag "check_box_only_one.js" %>
+<%= javascript_include_tag "get_location.js" %>
 <%= form_tag reserve_map_path, :method => 'get' do %>
 <div class="list">
 <ul>
@@ -23,10 +24,7 @@
   </li>
 </ul>
 </div>
-
-<%= javascript_include_tag "get_location.js" %>
-
-<input type="button" name="location[]" id="button_05" type="checkbox" class="location" />
+<input type="button" name="location[]" id="button_05" class="location" value="現在地を取得する"/>
 <label for="button_05" class="check_label">現在地を取得する</label>
 
 

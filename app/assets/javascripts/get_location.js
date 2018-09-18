@@ -3,19 +3,14 @@
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
       // success callback
-      function(position) {
+      function postion() {
       var latitude  = position.coords.latitude;//緯度
       var longitude = position.coords.longitude;//経度
-      var location = ( "latitude: " + position.coords.latitude + "\nlongitude: " + position.coords.longitude );
-      postdata(){
-        $.ajax({
-          url: "/reserve/map",
-          data: var location
-        });
-      };
+      var location = ( "latitude: " + latitude + "\nlongitude: " + longitude );
+      alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
     }
     // error callback
-    function (error) {
+    function error() {
            //エラー情報を配列として定義
            var errorInfo = [
            "原因不明のエラーが発生しました…。" ,
