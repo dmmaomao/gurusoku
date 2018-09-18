@@ -9,10 +9,21 @@
 
 
 <script type="text/javascript">
-function initMap() {
+  var data = new Array();
+    data.push({
+        lat: '35.678647', //緯度
+        lng: '139.767384', //経度
+        content: '現在地' //情報ウィンドウの内容
+    });
+    data.push({
+        lat: '35.678187',
+        lng: '139.76817',
+        content: '<span style="color:#d50000">八重洲ブックセンター</span>'
+    });
+  function initMap() {
   var location ={lat: 35.678647, lng: 139.767384};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 16,
     center: location
   });
   var transitLayer = new google.maps.TransitLayer();
@@ -22,18 +33,24 @@ function initMap() {
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
-
-        var marker = new google.maps.Marker({
-            position:location,
-            map: map,
-            title: contentString
+  var markers = new Array();
+  for (i = 0; i < data.length; i++) {
+        markers[i] = new google.maps.Marker({
+            position: new google.maps.LatLng(data[i].lat, data[i].lng),
+            map: map
         });
-
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
+        markerInfo(markers[i], data[i].content);
     }
+}
+function markerInfo(marker, name) {
+    new google.maps.InfoWindow({
+        content: name
+    }).open(marker.getMap(), marker);
+}
+//地図描画を実行
+google.maps.event.addDomListener(window, 'load', map_canvas);
 </script>
+
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBiKAJR9OHYaiIgqc2Fb1MdU-yGaWKlsio&callback=initMap">
 </script>
@@ -44,25 +61,15 @@ function initMap() {
 
 <p>
   <strong>現在地:</strong>
-  東京都千代田区丸の内１丁目９−２
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  35.678647
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  139.767384
+  東京都千代田区丸の内１丁目９−２（35.678647,139.767384）
 </p>
 
 <style type="text/css">
-  #map { height: 400px;
+  #map { height: 600px;
     margin-left:auto;
     margin-right:auto;
     text-align:left;
-    width: 80%;}
+    width: 100%;}
 </style>
 <div id="map"></div>
 
@@ -72,7 +79,6 @@ function initMap() {
   <div class="rest_list">
     <% @rest.each do |rest| %>
     <div class="card">
-      <%= rest["id"] %>
       <div class="card-block">
         <h2 class="card-title"><%= rest["name"] %>（ジャンル: <%= rest["category"] %>）</h2>
         <%= image_tag(rest["image_url"]["shop_image1"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
@@ -92,6 +98,11 @@ function initMap() {
 <%= link_to '人数指定に戻る', reserve_search_path %>
 
 
+    <% @rest.each do |rest| %>
+    <%= rest["name"] %>
+    <%= rest["latitude"] %>
+    <%= rest["longitude"] %>
+    <% end %>
 
 
 
