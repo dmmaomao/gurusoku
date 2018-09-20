@@ -9,21 +9,68 @@
 
 
 <script type="text/javascript">
+  var data0 = new Array();
+    data0.push({
+      lat: '35.678647', //緯度
+      lng: '139.767384', //経度
+      content: '現在地' //情報ウィンドウの内容
+    });
   var data = new Array();
     data.push({
-        lat: '35.678647', //緯度
-        lng: '139.767384', //経度
-        content: '現在地' //情報ウィンドウの内容
+      lat: '35.678797',
+      lng: '139.768144',
+      content:
+      '<span style="color:#d50000">キリンシティ 八重洲地下街店</span>（ジャンル: ビアレストラン）'
     });
     data.push({
-        lat: '35.678187',
-        lng: '139.76817',
-        content: '<span style="color:#d50000">八重洲ブックセンター</span>'
+        lat: '35.678848',
+        lng: '139.768160',
+        content: '<span style="color:#d50000">築地 ナカシマルシェ 八重洲店</span>'
+    });
+    data.push({
+        lat: '35.679263',
+        lng: '139.767716',
+        content: '<span style="color:#d50000">ふれんち茶懐石 京都福寿園茶寮 東京駅グランルーフ店 </span>'
+    });
+    data.push({
+        lat: '35.678133',
+        lng: '139.766853',
+        content: '<span style="color:#d50000">Tokyo Beer Paradise by Primus</span>'
+    });
+    data.push({
+        lat: '35.678117',
+        lng: '139.766827',
+        content: '<span style="color:#d50000">二尺五寸 丸の内ＰＣＰビル店</span>'
+    });
+    data.push({
+        lat: '35.678052',
+        lng: '139.766852',
+        content: '<span style="color:#d50000">NIHONBASHI BREWERY T．S</span>'
+    });
+    data.push({
+        lat: '35.679696',
+        lng: '139.767555',
+        content: '<span style="color:#d50000">ウォルプタス 東京駅グランルーフ店</span>'
+    });
+    data.push({
+        lat: '35.677755',
+        lng: '139.768420',
+        content: '<span style="color:#d50000">博多劇場 八重洲店</span>'
+    });
+    data.push({
+        lat: '35.677789',
+        lng: '139.768517',
+        content: '<span style="color:#d50000">SWANLAKE Pub Edo 八重洲店</span>'
+    });
+    data.push({
+        lat: '35.677758',
+        lng: '139.768447',
+        content: '<span style="color:#d50000">重慶府 八重洲店</span>'
     });
   function initMap() {
   var location ={lat: 35.678647, lng: 139.767384};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 16,
+    zoom: 18,
     center: location
   });
   var transitLayer = new google.maps.TransitLayer();
@@ -33,6 +80,13 @@
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
+  var marker = new google.maps.Marker({ // マーカーの追加
+        position: location, // マーカーを立てる位置を指定
+        map: map // マーカーを立てる地図を指定
+      });
+      infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
+      content: '<span style="color:#d50000">現在地</span>' // 吹き出しに表示する内容
+    }).open(map, marker);
   var markers = new Array();
   for (i = 0; i < data.length; i++) {
         markers[i] = new google.maps.Marker({
@@ -47,6 +101,15 @@ function markerInfo(marker, name) {
         content: name
     }).open(marker.getMap(), marker);
 }
+
+function markerInfo(marker, name) {
+    //google.maps.event.addListener(marker, 'click', function (event) {
+        new google.maps.InfoWindow({
+            content: name
+        }).open(marker.getMap(), marker);
+    }
+    //);
+//}
 //地図描画を実行
 google.maps.event.addDomListener(window, 'load', map_canvas);
 </script>
@@ -63,13 +126,26 @@ google.maps.event.addDomListener(window, 'load', map_canvas);
   <strong>現在地:</strong>
   東京都千代田区丸の内１丁目９−２（35.678647,139.767384）
 </p>
-
 <style type="text/css">
-  #map { height: 600px;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:left;
-    width: 100%;}
+#maps {
+position: relative;
+padding-bottom: 100%; /*これが縦横比*/
+height: 0;
+overflow: hidden;
+}
+#maps iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100% !important;
+height: 100% !important;
+}
+#map {
+  height: 900px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  width: 100%;}
 </style>
 <div id="map"></div>
 
