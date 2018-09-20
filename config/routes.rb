@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   resources :current_users
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    confirmations: "users/confirmations"
+  }
   root to: "reserve#search"
   get 'reserve' => 'reserve#index'
   get 'reserve/search' => 'reserve#search'
   post 'reserve' => 'reserve#create'
   get 'reserve/map' => 'reserve#map'
+  get 'tenpo' => 'top#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
