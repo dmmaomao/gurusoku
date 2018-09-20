@@ -6,67 +6,11 @@
 <input hidden name="location_lat" value="#{@latitude}">
 <input hidden name="location_lon" value="#{@longitude}">
 <% end %>
-
+<script src="https://82mou.github.io/infobox/lib/infobox.js"></script>
 
 <script type="text/javascript">
-  var data0 = new Array();
-    data0.push({
-      lat: '35.678647', //緯度
-      lng: '139.767384', //経度
-      content: '現在地' //情報ウィンドウの内容
-    });
-  var data = new Array();
-    data.push({
-      lat: '35.678797',
-      lng: '139.768144',
-      content:
-      '<span style="color:#d50000">キリンシティ 八重洲地下街店</span>（ジャンル: ビアレストラン）'
-    });
-    data.push({
-        lat: '35.678848',
-        lng: '139.768160',
-        content: '<span style="color:#d50000">築地 ナカシマルシェ 八重洲店</span>'
-    });
-    data.push({
-        lat: '35.679263',
-        lng: '139.767716',
-        content: '<span style="color:#d50000">ふれんち茶懐石 京都福寿園茶寮 東京駅グランルーフ店 </span>'
-    });
-    data.push({
-        lat: '35.678133',
-        lng: '139.766853',
-        content: '<span style="color:#d50000">Tokyo Beer Paradise by Primus</span>'
-    });
-    data.push({
-        lat: '35.678117',
-        lng: '139.766827',
-        content: '<span style="color:#d50000">二尺五寸 丸の内ＰＣＰビル店</span>'
-    });
-    data.push({
-        lat: '35.678052',
-        lng: '139.766852',
-        content: '<span style="color:#d50000">NIHONBASHI BREWERY T．S</span>'
-    });
-    data.push({
-        lat: '35.679696',
-        lng: '139.767555',
-        content: '<span style="color:#d50000">ウォルプタス 東京駅グランルーフ店</span>'
-    });
-    data.push({
-        lat: '35.677755',
-        lng: '139.768420',
-        content: '<span style="color:#d50000">博多劇場 八重洲店</span>'
-    });
-    data.push({
-        lat: '35.677789',
-        lng: '139.768517',
-        content: '<span style="color:#d50000">SWANLAKE Pub Edo 八重洲店</span>'
-    });
-    data.push({
-        lat: '35.677758',
-        lng: '139.768447',
-        content: '<span style="color:#d50000">重慶府 八重洲店</span>'
-    });
+  var marker = [];
+  var data = [];
   function initMap() {
   var location ={lat: 35.678647, lng: 139.767384};
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -75,41 +19,57 @@
   });
   var transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
-
   var contentString = '住所：東京都千代田区丸の内１丁目９−２';
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
-  var marker = new google.maps.Marker({ // マーカーの追加
-        position: location, // マーカーを立てる位置を指定
-        map: map // マーカーを立てる地図を指定
-      });
-      infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
-      content: '<span style="color:#d50000">現在地</span>' // 吹き出しに表示する内容
-    }).open(map, marker);
-  var markers = new Array();
-  for (i = 0; i < data.length; i++) {
-        markers[i] = new google.maps.Marker({
-            position: new google.maps.LatLng(data[i].lat, data[i].lng),
-            map: map
+
+  $.getJSON("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=35.678647&longitude=139.767384&range=1&web_reserve=1&bottomless_cup=1", function(json){
+    for (var i = 0; i <= json.rest.length-1; i++) {
+      data.push(
+        {
+          'id': json.rest[i].id,
+          'name': json.rest[i].name,
+          'category': json.rest[i].category,
+          'lat': json.rest[i].latitude,
+          'lng': json.rest[i].longitude,
+          'pr': json.rest[i].pr.pr_short,
+          'img1': json.rest[i].image_url.shop_image1,
+          'img2': json.rest[i].image_url.shop_image2,
+          'tel': json.rest[i].tel
         });
-        markerInfo(markers[i], data[i].content);
+    };
+    for (var i = 0; i < data.length; i++) {
+      markerLatLng = {lat: data[i]['lat'], lng: data[i]['lng']};
+      marker[i] = new google.maps.Marker({
+        position: new google.maps.LatLng(data[i]['lat'], data[i]['lng']),
+        map: map
+      });
+      markerInfo(marker[i], '<a href="#' + data[i]['id'] + '">' + '<span style="color:#d50000">' + data[i]['name'] + '</span></a>'+ '<br/>' + '（category：' + data[i]['category'] + ')' + '<br/>' + '<p style="display:inline;"><img src="' +data[i]['img1'] + '"></p>' + '<br/>' + data[i]['pr'] + '<br/>' + '<a href="tel:' +data[i]['tel'] + '">' + data[i]['tel'] + '</a>' + '<a href="#' + data[i]['id'] + '">' + '<span style="color:#d50000">この店に予約する</span></a>');
     }
-}
-function markerInfo(marker, name) {
-    new google.maps.InfoWindow({
-        content: name
-    }).open(marker.getMap(), marker);
+  });
 }
 
 function markerInfo(marker, name) {
-    //google.maps.event.addListener(marker, 'click', function (event) {
-        new google.maps.InfoWindow({
-            content: name
-        }).open(marker.getMap(), marker);
-    }
-    //);
-//}
+  var win = {
+    content: name,
+    maxWidth: 250,
+  }
+  var infowin = new google.maps.InfoWindow(win);
+
+  google.maps.event.addListener(marker, 'click', function (event) {
+    infowin.open(marker.getMap(), marker)
+  });
+}
+
+
+
+
+
+
+
+
+
 //地図描画を実行
 google.maps.event.addDomListener(window, 'load', map_canvas);
 </script>
@@ -141,11 +101,40 @@ width: 100% !important;
 height: 100% !important;
 }
 #map {
-  height: 900px;
+  height: 600px;
   margin-left:auto;
   margin-right:auto;
   text-align:left;
   width: 100%;}
+#map-info-window {
+  position: relative;
+  width: 250px;
+  padding: 25px 30px;
+  border: 2px solid #EC492C;
+  background-color: #fff;
+}
+#map-info-window:before {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 20px;
+  height: 10px;
+  transform: translate(-50%, 0);
+  background: url(https://82mou.github.io/infobox/img/gmap-info-window-frame-point.png) no-repeat 0 0;
+  content: '';
+}
+#map-info-window-title {
+  color: #EC492C;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+#map-info-window-address {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
 </style>
 <div id="map"></div>
 
@@ -156,7 +145,7 @@ height: 100% !important;
     <% @rest.each do |rest| %>
     <div class="card">
       <div class="card-block">
-        <h2 class="card-title"><%= rest["name"] %>（ジャンル: <%= rest["category"] %>）</h2>
+        <h2 class="card-title" id="<%= rest["id"] %>"><%= rest["name"] %>（ジャンル: <%= rest["category"] %>）</h2>
         <%= image_tag(rest["image_url"]["shop_image1"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
         <%= image_tag(rest["image_url"]["shop_image2"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
         <p class="card-text"><%= rest["pr"]["pr_short"].presence %></p>
@@ -166,6 +155,7 @@ height: 100% !important;
       <label for="button_05" class="check_label">この店に予約する</label>
       <%= submit_tag "仮予約を完了する", { id: 'submit_btn', class: 'btn btn-primary' } %>
       <% end %>
+      <a href="#TOP">地図へ戻る</a>
     </div>
     <% end %>
   </div>
