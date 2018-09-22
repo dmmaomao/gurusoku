@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :current_users
   devise_for :users, controllers: {
     registrations: "users/registrations",
     confirmations: "users/confirmations"
   }
+  resources :current_users
   root to: "reserve#search"
   get 'reserve' => 'reserve#index'
   get 'reserve/search' => 'reserve#search'

@@ -64,12 +64,6 @@ function markerInfo(marker, name) {
 
 
 
-
-
-
-
-
-
 //地図描画を実行
 google.maps.event.addDomListener(window, 'load', map_canvas);
 </script>
@@ -145,16 +139,17 @@ height: 100% !important;
     <% @rest.each do |rest| %>
     <div class="card">
       <div class="card-block">
-        <h2 class="card-title" id="<%= rest["id"] %>"><%= rest["name"] %>（ジャンル: <%= rest["category"] %>）</h2>
-        <%= image_tag(rest["image_url"]["shop_image1"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
-        <%= image_tag(rest["image_url"]["shop_image2"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
+        <h2 class="card-title" id="<%= rest["id"] %>"><%= rest["name"] %><br/>（category: <%= rest["category"] %>）</h2>
+        <div class="card-image">
+          <%= image_tag(rest["image_url"]["shop_image1"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
+            <%= image_tag(rest["image_url"]["shop_image2"].presence || '/files/images/noimage.png', { class: 'card-img-top center-block' }) %>
+          </div>
         <p class="card-text"><%= rest["pr"]["pr_short"].presence %></p>
       </div>
 
       <%= form_tag new_user_registration_path, :method => 'get' do %>
-      <input type="button" name="izakaya[]" id="button_05" class="yoyaku" value="<%= rest["name"] %>"/>
-      <label for="button_05" class="check_label">この店に予約する</label>
-      <%= submit_tag "仮予約を完了する", { id: 'submit_btn', class: 'btn btn-primary' } %>
+      <input hidden name="izakaya[]" id="button_05" class="yoyaku" />
+      <%= button_tag "この店に予約する", { id: 'button_yoyaku', class: 'card-yoyaku' } %>
       <% end %>
       <a href="#TOP">地図へ戻る</a>
     </div>
@@ -164,12 +159,6 @@ height: 100% !important;
 
 <%= link_to '人数指定に戻る', reserve_search_path %>
 
-
-    <% @rest.each do |rest| %>
-    <%= rest["name"] %>
-    <%= rest["latitude"] %>
-    <%= rest["longitude"] %>
-    <% end %>
 
 
 
