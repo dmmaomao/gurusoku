@@ -58,3 +58,4 @@ end
 gem 'geocoder'
 gem "gmaps4rails"
 gem 'geokit-rails'
+gem 'faker'

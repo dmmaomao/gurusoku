@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927022543) do
+ActiveRecord::Schema.define(version: 20180927030625) do
 
   create_table "current_users", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -47,19 +47,13 @@ ActiveRecord::Schema.define(version: 20180927022543) do
   end
 
   create_table "seats", force: :cascade do |t|
-    t.integer  "total_now",         limit: 4
-    t.integer  "total_15min",       limit: 4
-    t.integer  "four_seats_now",    limit: 4
-    t.integer  "four_seats_15min",  limit: 4
-    t.integer  "six_seats_now",     limit: 4
-    t.integer  "six_seats_15min",   limit: 4
-    t.integer  "eight_seats_now",   limit: 4
-    t.integer  "eight_seats_15min", limit: 4
-    t.integer  "teb_seats_now",     limit: 4
-    t.integer  "ten_seats_15min",   limit: 4
-    t.integer  "izakaya_id",        limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "izakaya_id",  limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "four_seats",  limit: 4
+    t.integer  "six_seats",   limit: 4
+    t.integer  "ten_seats",   limit: 4
+    t.integer  "eight_seats", limit: 4
   end
 
   create_table "users", force: :cascade do |t|
