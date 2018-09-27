@@ -24,7 +24,7 @@
     content: contentString
   });
 
-  $.getJSON("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=35.678647&longitude=139.767384&range=1&web_reserve=1&bottomless_cup=1", function(json){
+  $.getJSON("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=35.678647&longitude=139.767384&range=1&bottomless_cup=1", function(json){
     for (var i = 0; i <= json.rest.length-1; i++) {
       data.push(
         {
@@ -147,10 +147,22 @@ height: 100% !important;
         <p class="card-text"><%= rest["pr"]["pr_short"].presence %></p>
       </div>
 
-      <%= form_tag new_user_registration_path, :method => 'get' do %>
+      <% if user_signed_in? %>
+
+      <%= form_tag reserve_done_path, :method => 'get' do %>
       <input hidden name="izakaya[]" id="button_05" class="yoyaku" />
       <%= button_tag "この店に予約する", { id: 'button_yoyaku', class: 'card-yoyaku' } %>
       <% end %>
+
+      <% else %>
+
+      <%= form_tag reserve_kariyoyaku_path, :method => 'get' do %>
+      <input hidden name="izakaya[]" id="button_05" class="yoyaku" />
+      <%= button_tag "この店に予約する", { id: 'button_yoyaku', class: 'card-yoyaku' } %>
+      <% end %>
+
+      <% end %>
+
       <a href="#TOP">地図へ戻る</a>
     </div>
     <% end %>

@@ -1,0 +1,54 @@
+<h2>仮予約しました！</h2>
+<h3>5分以内に本予約してください（氏名・電話番号を入力）</h3>
+
+<%= form_tag new_user_registration_path, :method => 'get' do %>
+<div class="cp_iptxt">
+<input type="text" placeholder="氏名" value="" name="name[]">
+<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+</div>
+<div class="cp_iptxt">
+<input type="text" placeholder="090-1234-5678" value="" name="tel[]">
+<i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+</div>
+<%= submit_tag "本予約を完了する", { id: 'submit_btn', class: 'btn btn-primary' } %>
+<% end %>
+
+<%= link_to 'マップに戻る', reserve_map_path %>
+
+
+
+<style type="text/css">
+.cp_iptxt {
+position: relative;
+width: 80%;
+margin: 40px 3%;
+}
+.cp_iptxt input[type=text] {
+font: 15px/24px sans-serif;
+box-sizing: border-box;
+width: 100%;
+margin: 8px 0;
+padding: 0.3em;
+transition: 0.3s;
+border: 1px solid #1b2538;
+border-radius: 4px;
+outline: none;
+}
+.cp_iptxt input[type=text]:focus {
+border-color: #da3c41;
+}
+.cp_iptxt input[type=text] {
+padding-left: 40px;
+}
+.cp_iptxt i {
+position: absolute;
+top: 8px;
+left: 0;
+padding: 9px 8px;
+transition: 0.3s;
+color: #aaaaaa;
+}
+.cp_iptxt input[type=text]:focus + i {
+color: #da3c41;
+}
+</style>

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post 'reserve' => 'reserve#create'
   get 'reserve/map' => 'reserve#map'
   get 'tenpo' => 'top#index'
+  get 'reserve/kariyoyaku' => 'reserve#kariyoyaku'
+  get 'reserve/done' => 'reserve#done'
+  get 'reserve/sign_done' => 'reserve#sign_done'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

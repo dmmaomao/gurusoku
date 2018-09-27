@@ -10,11 +10,20 @@ class ReserveController < ApplicationController
   def search
   end
 
+  def kariyoyaku
+    @name = params[:name]
+    @tel = params[:email]
+  end
+
+  def done
+  end
+
+  def sign_done
+  end
 
   def search_map
     latitude = params[:latitude]
     longitude = params[:longitude]
-    @places = Izakaya.all.within(0.3, origin: [latitude, longitude])
   end
 
 
@@ -57,7 +66,7 @@ class ReserveController < ApplicationController
 
   private
   def get_izakaya()
-    url = URI.parse(URI.escape("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=35.678647&longitude=139.767384&range=1&web_reserve=1&bottomless_cup=1"))
+    url = URI.parse(URI.escape("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=acfab00be0c5713c509b44baa0f1a81b&latitude=35.678647&longitude=139.767384&range=1&bottomless_cup=1"))
     res = Net::HTTP.start(url.host, url.port, use_ssl: true){|http|
       http.get(url.path + "?" + url.query);
     }
