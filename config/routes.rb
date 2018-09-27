@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   resources :current_users
   root to: "reserve#search"
-  get 'reserve' => 'reserve#index'
+  get 'reserve' => 'reserve#search'
   get 'reserve/search' => 'reserve#search'
   post 'reserve' => 'reserve#create'
   get 'reserve/map' => 'reserve#map'
@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get 'reserve/kariyoyaku' => 'reserve#kariyoyaku'
   get 'reserve/done' => 'reserve#done'
   get 'reserve/sign_done' => 'reserve#sign_done'
+  resources :reviews do
+  end
+  resources :users, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

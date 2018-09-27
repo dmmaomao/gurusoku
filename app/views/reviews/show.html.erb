@@ -1,0 +1,24 @@
+<div class ="contents row">
+  <div class="content_post">
+    <% if user_signed_in? && current_user.id == @review.user_id %>>
+      <ul class="more_list">
+        <li>
+          <%= link_to '編集', "/reviews/#{@review.id}/edit", method: :get %>
+        </li>
+        <li>
+          <%= link_to '削除', "/reviews/#{@review.id}", method: :delete %>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+    <%= simple_format(@review.text) %>
+    <span class="name">
+      <a href="/users/<%= @review.user_id %>">
+        <span>投稿者：</span><%= @review.user.name %>
+      </a>
+    </span>
+  </div>
+</div>
+
+
+
