@@ -2,7 +2,6 @@
  <h2 style="text-align: center;">何名様ですか？</h2>
 
 <%= javascript_include_tag "check_box_only_one.js" %>
-<%= javascript_include_tag "get_location.js" %>
 
 <%= form_tag reserve_map_path, :method => 'get' do %>
 <div class="list" style="text-align: center; margin: 30px;">
@@ -31,6 +30,63 @@
 <%= hidden_field(:query, :longitude, {value: nil}) %>
 <%= submit_tag "徒歩3分の居酒屋を検索する", { id: 'submit_btn', class: 'btn btn-primary' } %>
 <% end %>
+
+
+<script type="text/javascript">
+  $(".location").on("click", function getposition(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+      // success callback
+      function(postion) {
+      var latitude  = position.coords.latitude;//緯度
+      var longitude = position.coords.longitude;//経度
+      var location = ( "latitude: " + latitude + "\nlongitude: " + longitude );
+      alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+    }
+    // error callback
+    function error() {
+           //エラー情報を配列として定義
+           var errorInfo = [
+           "原因不明のエラーが発生しました…。" ,
+           "位置情報の取得が許可されませんでした…。" ,
+           "電波状況などで位置情報が取得できませんでした…。" ,
+           "位置情報の取得に時間がかかり過ぎてタイムアウトしました…。"
+           ] ;
+           //エラーコードを変数に代入（エラーコードはgetCurrentPositionの引数として受け取っている）
+           var errorNo = error.code ;
+           //エラーメッセージに、先に定義したエラーコードと、エラー番号に対応した情報をalert表示させる
+           var errorMessage = "[エラー番号: " + errorNo + "]\n" + errorInfo[ errorNo ] ;
+           alert( errorMessage ) ;
+         }
+       }
+       else {
+        var errorMessage = "お使いの端末は、GeoLacation APIに対応していません。" ;
+        alert( errorMessage ) ;
+     };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
   var ready

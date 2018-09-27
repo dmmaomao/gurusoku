@@ -5,12 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-99.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  Seat.create!(name:  name,
-               email: email,
-               age: rand(0..100)
+require 'faker'
+require 'Set'
+100.times do |n|
+  four_seats = Faker::Number.number(1)
+  six_seats = Faker::Number.number(1)
+  eight_seats = Faker::Number.number(1)
+  ten_seats = Faker::Number.number(1)
+  Seat.create!(
+    four_seats: four_seats,
+    six_seats: six_seats,
+    eight_seats: eight_seats,
+    ten_seats: ten_seats,
                )
+end
